@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -22,7 +21,7 @@ class App extends Component {
 		var canvasWidth = window.innerWidth * 2;
 		var canvasHeight = window.innerWidth * 0.6 * 2;
 
-		console.log(canvasWidth, canvasHeight)
+		// console.log(canvasWidth, canvasHeight);
 
 		// Create an image object (only need one instance)
 		var imageObj = new Image();
@@ -207,7 +206,7 @@ class App extends Component {
 
     return (
       <div style={css.container} className="App">
-        <img style={css.bgImage} src="http://i0.wp.com/raphaelkottakal.com/wp-content/uploads/2016/04/New-bff.png" />
+        <img style={css.bgImage} src="http://i0.wp.com/raphaelkottakal.com/wp-content/uploads/2016/04/New-bff.png" alt="background" />
         <canvas style={css.canvas} ref="myCanvas" id="myCanvas" width="400" height="400"></canvas>
       </div>
     );
