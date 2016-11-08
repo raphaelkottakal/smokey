@@ -9,7 +9,7 @@ class App extends Component {
 		var particles = [];
 
 		// The amount of particles to render
-		var particleCount = 30;
+		var particleCount = 3;
 
 		// The maximum velocity in each direction
 		var maxVelocity = 2;
@@ -18,13 +18,16 @@ class App extends Component {
 		var targetFPS = 33;
 
 		// Set the dimensions of the canvas as variables so they can be used.
-		var canvasWidth = window.innerWidth * 2;
-		var canvasHeight = window.innerWidth * 0.6 * 2;
+		var canvasWidth = canvas.width;
+		var canvasHeight = canvas.height;
 
 		// console.log(canvasWidth, canvasHeight);
 
 		// Create an image object (only need one instance)
 		var imageObj = new Image();
+
+		// imageObj.width = 50;
+		// imageObj.height = 50;
 
 		// Once the image has been downloaded then set the image on all of the particles
 		imageObj.onload = function() {
@@ -149,12 +152,20 @@ class App extends Component {
 		    }
 		}
 
+		const bgImage = this.refs.bgImage;
+
 		// The function to draw the scene
 		function draw() {
-		    // Clear the drawing surface and fill it with a black background
-		    context.fillStyle = "rgba(0, 0, 0, 0)";
-		    context.fillRect(0, 0, 400, 400);
 
+
+			context.globalCompositeOperation = 'source-over';
+		    // Clear the drawing surface and fill it with a black background
+		    context.fillStyle = "rgba(0, 0, 0, 1)";
+		    // context.fillRect(0, 0, 400, 400);
+		    // console.log(window.innerWidth);
+		    context.drawImage(bgImage, 0,0, canvas.width, canvas.height);
+			
+			// context.globalCompositeOperation = 'multiply';
 		    // Go through all of the particles and draw them.
 		    particles.forEach(function(particle) {
 		        particle.draw();
@@ -191,23 +202,24 @@ class App extends Component {
   			top: 0,
   			left: 0,
   			width: window.innerWidth,
-  			height: window.innerWidth * 0.6,
+  			height: window.innerWidth * 0.75,
   			position: 'absolute',
-  			opacity: 0.5
+  			opacity: 1
   		},
   		bgImage: {
   			top: 0,
   			left: 0,
   			width: '100%',
   			height: 'auto',
-  			position: 'absolute'
+  			position: 'absolute',
+  			display: 'none'
   		}
   	}
 
     return (
       <div style={css.container} className="App">
-        <img style={css.bgImage} src="http://i0.wp.com/raphaelkottakal.com/wp-content/uploads/2016/04/New-bff.png" alt="background" />
-        <canvas style={css.canvas} ref="myCanvas" id="myCanvas" width="400" height="400"></canvas>
+        <img ref="bgImage" style={css.bgImage} src="http://www168.lunapic.com/do-not-link-here-use-hosting-instead/147862467953078?2925236919" alt="background" />
+        <canvas style={css.canvas} ref="myCanvas" id="myCanvas"></canvas>
       </div>
     );
   }
